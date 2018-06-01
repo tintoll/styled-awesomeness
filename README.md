@@ -174,3 +174,34 @@ ThemeProvider 설정 방법이 Redux의 스토어를 정의해주는 방법이�
 
 
 
+### Nesting 
+
+SASS사용하는 nesting 사용법
+
+```javascript
+const Card = styled.div`
+  background-color: red;
+`;
+
+const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  background-color: pink;
+  ${Card} {
+    background : blue;
+  }
+`;
+
+```
+
+위오 같이 정의하면 Container안의 Card컴포넌트에 모두 background가 적용된다. `${Card}:active` 같이 행위도 줄수있다.
+
+
+
+추천하는 컴포넌트 목록
+
+https://github.com/serranoarevalo/styled-awesomeness/blob/master/07-extras/extras.md
+
+반응형을 가능하게 해주는 breakpoints : https://github.com/jameslnewell/styled-components-breakpoint
+
+Flex를 쉽게해주는 라이브러리 : https://github.com/SaraVieira/styled-flex-component
