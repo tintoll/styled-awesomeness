@@ -111,3 +111,66 @@ const Input = styled.input.attrs({
 `;
 ```
 
+
+
+### Theming - 공통된 테마 값을 불러와서 사용하는 방법 
+
+1. 공통으로 사용할 값들을 정의한 객체를 하나 만들어준다.
+2. ThemeProvider 컴포넌트의 prop으로 그 값을 넣어준다.
+3. ThemeProvider 안의 컴포넌트들에서 공통으로정의한 값들을 prop를 통해 사용할수 있다.
+
+```javascript
+// theme.js
+const theme = {
+  mainColor: "#3498db",
+  dangerColor: "#e74c3c",
+  successColor: "#2ecc71"
+};
+
+export default theme;
+
+// App.js
+import styled, { injectGlobal, ThemeProvider } from "styled-components";
+import theme from './theme';
+
+const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  background-color: pink;
+`;
+
+const Card = styled.div`
+  background-color: red;
+`;
+
+const Button = styled.button`
+  border-radius: 30px;
+  padding: 25px 15px;
+  background-color: ${props => props.theme.successColor};
+`;
+
+const Form = () => (
+  <Card>
+    <Button>Hello</Button>
+  </Card>
+);
+
+class App extends Component {
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <Container>
+          <Form />
+        </Container>
+      </ThemeProvider>
+    );
+  }
+}
+
+export default App;
+```
+
+ThemeProvider 설정 방법이 Redux의 스토어를 정의해주는 방법이랑 비슷하다.
+
+
+
